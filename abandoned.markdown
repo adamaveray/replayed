@@ -1,0 +1,3 @@
+A short quip about this category.
+
+- Game (Platform) (note wraps to second line with default style)
