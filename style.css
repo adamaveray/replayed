@@ -20,7 +20,7 @@ a {
 }
 
 	a:hover {
-		color:	#333;
+		color:	#00adee;
 		text-decoration:	none;
 	}
 
@@ -29,13 +29,9 @@ a {
 .reference-link {
 	font-weight:	normal;
 }
-	.reference-link:hover {
-		color:	#00adee;
-	}
 
 .items-group {
 	padding:	16px;
-	width:	320px;
 
 	-o-box-sizing:		border-box;
 	-ms-box-sizing:		border-box;
@@ -49,10 +45,10 @@ footer {
 	width:	auto;
 	margin:	16px 16px 0 16px;
 	padding:	16px 0 0 0;
-	border-top:	1px solid #333;
+	border-top:	1px solid #aaa;
 	clear:	both;
 
-	color:	#333;
+	color:	#888;
 }
 
 h2 {
@@ -69,6 +65,7 @@ p {
 .item {
 	position:	relative;
 	padding:	0 0 0 16px;
+	margin-bottom:	0.4em;
 	list-style:	none;
 }
 
@@ -98,14 +95,76 @@ p {
 	.notes {
 		position:	relative;
 		top:		-2px;
-		margin:		0;
+		margin:		0.3em 0 0 0;
 
 		font-size:		11px;
 		line-height:	13px;
 	}
 
+	.platform:before {
+		content:	"";
+		display:	none;
+		width:	1em;
+		height:	1em;
+
+		vertical-align:	text-top;
+
+		-webkit-border-radius:	50%;
+		border-radius:			50%;
+		margin-right:	0.5em;
+	}
+
+	/* Platform colours */
+	.platform-xbox .platform:before,
+	.platform-xbox360 .platform:before,
+	.platform-xboxone .platform:before,
+	.platform-playstation .platform:before,
+	.platform-playstation2 .platform:before,
+	.platform-ps2 .platform:before,
+	[class^="item platform-playstation"] .platform:before,
+	[class^="item platform-ps"] .platform:before,
+	.platform-iphone .platform:before,
+	.platform-ipad .platform:before,
+	.platform-ios .platform:before,
+	.platform-wii .platform:before,
+	.platform-wiiu .platform:before,
+	.platform-nes .platform:before,
+	.platform-snes .platform:before,
+	.platform-n64 .platform:before,
+	[class^="item platform-gameboy"] .platform:before,
+	.platform-gba .platform:before,
+	[class^="item platform-ds"] .platform:before,
+	.platform-2ds .platform:before,
+	.platform-3ds .platform:before {
+		/* Show circle */
+		display:	inline-block;
+	}
+
+		/* Colourise circle */
+		.platform-xbox .platform:before {		background-color: #8dc658; }
+		.platform-xbox360 .platform:before {	background-color: #97c92f; }
+		.platform-xboxone .platform:before {	background-color: #107d18; }
+		.platform-playstation .platform:before {	background-color: #306eb3; }
+		.platform-playstation2 .platform:before,
+		.platform-ps2 .platform:before {	background-color: #2205d1; }
+		[class^="item platform-playstation"] .platform:before,
+		[class^="item platform-ps"] .platform:before {	background-color: #0f0f0f; } /* Any other form of Playstation */
+		.platform-wii .platform:before {	background-color: #8e8c8d; }
+		.platform-wiiu .platform:before {	background-color: #2ecdfc; }
+		.platform-nes .platform:before,
+		.platform-snes .platform:before {	background-color: #fc0a1a; }
+		.platform-n64 .platform:before {	background-color: #1821a5; }
+		.platform-iphone .platform:before,
+		.platform-ipad .platform:before,
+		.platform-ios .platform:before {	background-color: #2699e3; }
+		[class^="item platform-gameboy"] .platform:before,
+		.platform-gba .platform:before {	background-color: #3942a5; }
+		[class^="item platform-ds"] .platform:before,
+		.platform-2ds .platform:before,
+		.platform-3ds .platform:before {	background-color: #b9091d; }
+
 .tags {
-	display:	inline;
+	display:	inline-block;
 	margin-left:	0.6em;
 }
 	.tag {
@@ -121,16 +180,32 @@ p {
 		}
 
 
-@media only screen and (min-device-width: 480px){
+@media only screen and (min-width: 480px){
 	body {
-		padding: 16px;
+		padding:	16px;
 	}
+
 	.items-group {
-		width:		25%;
-		min-width:	176px;
-		float:		left;
+		float:	left;
+		width:	50%;
 	}
+
+		/* Different number of columns */
+		[data-count="1"] .items-group { width: 100%; }
+
 	footer {
-		margin-bottom: 16px;
+		margin:	16px 16px 0 16px;
 	}
+}
+
+@media only screen and (min-width: 700px) {
+	.items-group {
+		float:	left;
+		width:	25%;
+	}
+
+		/* Different number of columns */
+		[data-count="2"] .items-group { width: 50%; }
+		[data-count="3"] .items-group { width: 33.33%; }
+		[data-count="4"] .items-group { width: 25%; }
 }
