@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/** Reset and base styles **/
+* {
+	margin:		0;
+	padding:	0;
+	border:		none;
+}
+
+body {
+	font:	13px/18px sans-serif;
+	color:	#333;
+	background-color:	#fff;
+}
+
+a {
+	text-decoration:	none;
+	font-weight:	bold;
+	color:			inherit;
+}
+
+	a:hover {
+		color:	#333;
+		text-decoration:	none;
+	}
+
+
+/** Theme **/
+.reference-link {
+	font-weight:	normal;
+}
+	.reference-link:hover {
+		color:	#00adee;
+	}
+
+.items-group {
+	padding:	16px;
+	width:	320px;
+
+	-o-box-sizing:		border-box;
+	-ms-box-sizing:		border-box;
+	-moz-box-sizing:	border-box;
+	-webkit-box-sizing:	border-box;
+	box-sizing:			border-box;
+}
+
+footer {
+	float:	none;
+	width:	auto;
+	margin:	16px 16px 0 16px;
+	padding:	16px 0 0 0;
+	border-top:	1px solid #333;
+	clear:	both;
+
+	color:	#333;
+}
+
+h2 {
+	margin:		0 0 16px 0;
+	padding:	0 0 16px 0;
+	border-bottom:	4px solid #333;
+	font-size:	2em;
+}
+
+p {
+	margin:	0 0 16px 0;
+}
+
+.item {
+	position:	relative;
+	padding:	0 0 0 16px;
+	list-style:	none;
+}
+
+	.item:before {
+		content:	'-';
+		display:	block;
+		position:	absolute;
+		top:	-2px;
+		left:	0;
+
+		font-size:		24px;
+		font-weight:	bold;
+	}
+
+	.title {
+		display:	inline;
+		margin:		0;
+		font-size:	1em;
+	}
+
+.platform,
+.notes {
+	font-size:	9px;
+	color:		#999;
+}
+
+	.notes {
+		position:	relative;
+		top:		-2px;
+		margin:		0;
+
+		font-size:		11px;
+		line-height:	13px;
+	}
+
+.tags {
+	display:	inline;
+	margin-left:	0.6em;
+}
+	.tag {
+		display:	inline;
+		color:	#666;
+		font-size:	11px;
+	}
+		.tag:before {
+			content:	"#";
+		}
+		.tag:after {
+			content:	" ";
+		}
+
+
+@media only screen and (min-device-width: 480px){
+	body {
+		padding: 16px;
+	}
+	.items-group {
+		width:		25%;
+		min-width:	176px;
+		float:		left;
+	}
+	footer {
+		margin-bottom: 16px;
+	}
+}
