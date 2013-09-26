@@ -41,4 +41,4 @@ The default lists are only examples – any number of lists can be created, whic
 Styling
 -------
 
-The system can be re-themed easily by writing "cartridges" – a fancy name for a new stylesheet and any images the theme uses. You can also [browse the pre-made cartridges](http://github.com/adamaveray/replayed-cartridges).
+The system can be re-themed easily by writing "cartridges" – a fancy name for a new template, stylesheet and any images the theme uses. You can also [browse the pre-made cartridges](http://github.com/adamaveray/replayed-cartridges).

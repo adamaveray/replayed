@@ -164,9 +164,15 @@ p {
 		.platform-3ds .platform:before {	background-color: #b9091d; }
 
 .tags {
-	display:	inline-block;
+	display:		none;
 	margin-left:	0.6em;
 }
+
+	/* Show tags only on hover */
+	.item:hover .tags {
+		display:	inline-block;
+	}
+
 	.tag {
 		display:	inline;
 		color:	#666;
@@ -178,6 +184,70 @@ p {
 		.tag:after {
 			content:	" ";
 		}
+
+
+.filters {
+	padding:	12px 18px 2px 18px;
+	overflow:	hidden;
+
+	text-align:	center;
+	background:	#333;
+	color:		#fff;
+}
+
+	.filters h2 {
+		display:	none;
+	}
+
+	.filter-container {
+		margin-bottom:	12px;
+	}
+
+
+	.filters h3 {
+		margin:	0 0 3px 0;
+
+		font-weight:	normal;
+		font-size:		12px;
+		text-transform:	uppercase;
+	}
+
+	.filter-list {
+		display:	inline-block;
+		margin:		0;
+		padding:	0;
+		list-style:	none;
+		letter-spacing:	3px;
+	}
+
+		.filter-list li {
+			display:	inline-block;
+			letter-spacing:	0;
+		}
+
+			.filter-list input {
+				display:	none;
+			}
+
+			.filter-list label {
+				display:	block;
+				padding:	1px 6px 0 6px;
+
+				background:	#555;
+				color:		#ddd;
+				cursor:	pointer;
+
+				-webkit-border-radius:	2px;
+				border-radius:			2px;
+
+				-webkit-transition:	all 0.2s;
+				transition:			all 0.2s;
+			}
+
+				.filter-list input:checked + label {
+					background:	#fff;
+					color:		#222;
+				}
 
 
 @media only screen and (min-width: 480px){
@@ -198,7 +268,11 @@ p {
 	}
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 700px){
+	body {
+		padding-bottom:	60px;
+	}
+
 	.items-group {
 		float:	left;
 		width:	25%;
@@ -208,4 +282,37 @@ p {
 		[data-count="2"] .items-group { width: 50%; }
 		[data-count="3"] .items-group { width: 33.33%; }
 		[data-count="4"] .items-group { width: 25%; }
+
+
+	.filters {
+		position:	fixed;
+		bottom:		0;
+		left:		0;
+		right:		0;
+		z-index:	5;
+		padding-bottom:	12px;
+	}
+
+	.filter-container {
+		display:	inline-block;
+		margin:		0 12px;
+	}
+
+		.filter-container:first-of-type {
+			display:	block;
+			float:		left;
+			text-align:	left;
+		}
+
+		.filter-container:last-of-type {
+			display:	block;
+			float:		right;
+			text-align:	right;
+		}
+
+	.filters h3 {
+		display:	inline-block;
+		margin:		0 5px 0 0;
+		padding:	0;
+	}
 }
