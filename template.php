@@ -19,7 +19,7 @@ function showEntry($entry){
 	// Build HTML
 	$classes	= array();
 	$output	=	'<h3 class="title">'
-					.'<a class="reference-link" target="_blank" href="http://www.google.com/search?q='.urlencode($title.' Game '.findBracketedWord(current($platforms), '[', ']', true)).'&btnI">'
+					.'<a class="reference-link" target="_blank" href="https://encrypted.google.com/search?btnI=1&q='.urlencode($title.' Game '.findBracketedWord(current($platforms), '[', ']', true)).'">'
 						.render($title, true, true)
 					.'</a>'
 				.'</h3>';
@@ -74,9 +74,9 @@ function showFilter($items, $type, $class){
 	<div class="filter-container">
 	<h3><?=$type;?></h3>
 	<ul class="filter-list filter-<?=$pluralClass;?>" data-type="<?=$class;?>">
-		<?php foreach($items as $item){?>
+		<?php foreach($items as $item => $count){?>
 		<li class="filter-item filter-<?=$class;?>">
-			<input type="checkbox" name="<?=$class;?>[]" value="<?=slugify($item);?>" id="filter-<?=$class;?>-<?=slugify($item);?>" checked />
+			<input type="checkbox" name="<?=$class;?>[]" value="<?=slugify($item);?>" data-item-count="<?=$count;?>" id="filter-<?=$class;?>-<?=slugify($item);?>" checked />
 			<label for="filter-<?=$class;?>-<?=slugify($item);?>"><?=$item;?></label>
 		</li>
 		<?php }?>
@@ -106,7 +106,7 @@ function showFilter($items, $type, $class){
 <?php foreach($lists as $title => $list){ ?>
 	<div class="items-group">
 		<h2><?=$title;?></h2>
-		<?=render($list['output']);?>
+		<?=render($list['extra']);?>
 		<?=showList($list['items']);?>
 	</div>
 <?php }?>

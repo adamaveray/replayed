@@ -64,16 +64,23 @@ function loadFile($file){
 				// Entry
 				$item		= processEntry($buffer);
 				$items[]	= $item;
-				$allTags		= array_unique(array_merge($allTags, $item['tags']));
+				foreach($item['tags'] as $tag){
+					if(!isset($allTags[$tag])){
+						$allTags[$tag]	= 0;
+					}
+					$allTags[$tag]++;
+				}
 				foreach($item['platforms'] as $platform){
-					$r = $platform;
 					$platform	= findBracketedWord($platform, '[', ']', true);
 					if($platform === ''){
-						echo '?? - ';print_r($item);exit;
+						// Empty platform?
+						continue;
 					}
-					if(!in_array($platform, $allPlatforms)){
-						$allPlatforms[]	= $platform;
+
+					if(!isset($allPlatforms[$platform])){
+						$allPlatforms[$platform]	= 0;
 					}
+					$allPlatforms[$platform]++;
 				}
 
 			} else {
@@ -228,5 +235,8 @@ foreach($files as $file){
 	$file	= loadFile($file);
 	$lists[$file['title']]	= $file;
 }
+
+ksort($allTags);
+ksort($allPlatforms);
 
 include(__DIR__.'/template.php');

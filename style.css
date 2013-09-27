@@ -102,27 +102,32 @@ p {
 	}
 
 	.platform:before {
+		position:	relative;
 		content:	"";
 		display:	none;
-		width:	1em;
-		height:	1em;
+		width:	0.8em;
+		height:	0.8em;
+		top:	1px;
+		margin-left:	0.2em;
+		margin-right:	0.5em;
 
 		vertical-align:	text-top;
 
 		-webkit-border-radius:	50%;
 		border-radius:			50%;
-		margin-right:	0.5em;
 	}
 
 	/* Platform colours */
 	.platform-xbox .platform:before,
+	.platform-xbla .platform:before,
+	.platform-360 .platform:before,
 	.platform-xbox360 .platform:before,
 	.platform-xboxone .platform:before,
+	[class^="item platform-playstation"] .platform:before,
+	[class^="item platform-ps"] .platform:before,
 	.platform-playstation .platform:before,
 	.platform-playstation2 .platform:before,
 	.platform-ps2 .platform:before,
-	[class^="item platform-playstation"] .platform:before,
-	[class^="item platform-ps"] .platform:before,
 	.platform-iphone .platform:before,
 	.platform-ipad .platform:before,
 	.platform-ios .platform:before,
@@ -131,37 +136,51 @@ p {
 	.platform-nes .platform:before,
 	.platform-snes .platform:before,
 	.platform-n64 .platform:before,
+	.platform-gamecube .platform:before,
+	.platform-gc .platform:before,
 	[class^="item platform-gameboy"] .platform:before,
+	.platform-gb .platform:before,
 	.platform-gba .platform:before,
 	[class^="item platform-ds"] .platform:before,
 	.platform-2ds .platform:before,
-	.platform-3ds .platform:before {
+	.platform-3ds .platform:before,
+	.platform-famicom .platform:before,
+	.platform-pc .platform:before,
+	.platform-mac .platform:before {
 		/* Show circle */
 		display:	inline-block;
 	}
 
 		/* Colourise circle */
 		.platform-xbox .platform:before {		background-color: #8dc658; }
+		.platform-xbla .platform:before,
+		.platform-360 .platform:before,
 		.platform-xbox360 .platform:before {	background-color: #97c92f; }
 		.platform-xboxone .platform:before {	background-color: #107d18; }
+		[class^="item platform-playstation"] .platform:before,
+		[class^="item platform-ps"] .platform:before {	background-color: #0f0f0f; }
 		.platform-playstation .platform:before {	background-color: #306eb3; }
 		.platform-playstation2 .platform:before,
 		.platform-ps2 .platform:before {	background-color: #2205d1; }
-		[class^="item platform-playstation"] .platform:before,
-		[class^="item platform-ps"] .platform:before {	background-color: #0f0f0f; } /* Any other form of Playstation */
 		.platform-wii .platform:before {	background-color: #8e8c8d; }
 		.platform-wiiu .platform:before {	background-color: #2ecdfc; }
 		.platform-nes .platform:before,
 		.platform-snes .platform:before {	background-color: #fc0a1a; }
 		.platform-n64 .platform:before {	background-color: #1821a5; }
+		.platform-gamecube .platform:before,
+		.platform-gc .platform:before {	background-color: #474e94; }
 		.platform-iphone .platform:before,
 		.platform-ipad .platform:before,
 		.platform-ios .platform:before {	background-color: #2699e3; }
+		.platform-gb .platform:before,
 		[class^="item platform-gameboy"] .platform:before,
 		.platform-gba .platform:before {	background-color: #3942a5; }
 		[class^="item platform-ds"] .platform:before,
 		.platform-2ds .platform:before,
 		.platform-3ds .platform:before {	background-color: #b9091d; }
+		.platform-famicom .platform:before {	background-color: #63010d; }
+		.platform-pc .platform:before {		background-color: #0000AA; }
+		.platform-mac .platform:before {	background-color: #d2d2d4; }
 
 .tags {
 	display:		none;
@@ -187,8 +206,11 @@ p {
 
 
 .filters {
-	padding:	12px 18px 2px 18px;
+	padding:	12px 18px 6px 18px;
+	width:		100%;
+	margin-left:	-18px;
 	overflow:	hidden;
+	clear:		both;
 
 	text-align:	center;
 	background:	#333;
@@ -201,7 +223,12 @@ p {
 
 	.filter-container {
 		margin-bottom:	12px;
+		cursor:	default;
 	}
+	
+		.filter-container:last-of-type {
+			margin-bottom:	0;
+		}
 
 
 	.filters h3 {
@@ -223,6 +250,7 @@ p {
 		.filter-list li {
 			display:	inline-block;
 			letter-spacing:	0;
+			margin-bottom:	6px;
 		}
 
 			.filter-list input {
@@ -290,7 +318,6 @@ p {
 		left:		0;
 		right:		0;
 		z-index:	5;
-		padding-bottom:	12px;
 	}
 
 	.filter-container {
@@ -298,16 +325,16 @@ p {
 		margin:		0 12px;
 	}
 
-		.filter-container:first-of-type {
-			display:	block;
-			float:		left;
-			text-align:	left;
-		}
-
 		.filter-container:last-of-type {
 			display:	block;
 			float:		right;
 			text-align:	right;
+		}
+
+		.filter-container:first-of-type {
+			display:	block;
+			float:		left;
+			text-align:	left;
 		}
 
 	.filters h3 {
