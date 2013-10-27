@@ -7,10 +7,43 @@
 	// Filtering
 	var filters	= {},
 		$allFilters,
-		animationMax	= 25;
+		animationMax	= 35;
 
-	$('.filter-list').each(function(){
-		var $list	= $(this),
+	var showFilterClear	= function($list){
+			var $clear	= $list.data('clear-button');
+			if(!$clear){
+				// Create button
+				$clear	= $('<button class="clear-button" type="button" />').text('Clear');
+				$list.data('clear-button', $clear);
+				$clear.hide()
+					  .appendTo($list)
+					  .click(function(){
+					// Clear all
+					var $inputs	= $list.find('input');
+					$inputs.prop('checked', true);
+					$inputs.eq(0).change();
+				});
+			}
+
+			if($clear.is(':hidden')){
+				$clear.show();
+			}
+		},
+		hideFilterClear	= function($filter){
+			var $clear	= $filter.data('clear-button');
+			if(!$clear){
+				// Nothing to remove
+				return;
+			}
+
+			if($clear.is(':visible')){
+				$clear.hide();
+			}
+		};
+
+	$('.filter-container').each(function(){
+		var $container	= $(this),
+			$list	= $container.children('.filter-list'),
 			type	= $list.data('type'),
 			$inputs	= $list.find('input');
 
@@ -18,13 +51,10 @@
 		$allFilters	= ($allFilters ? $allFilters.add($inputs) : $inputs);
 
 		$inputs.change(function(){
-			var showClasses	= [],
-				hideClasses	= [];
-
 			var $el	= $(this),
 				$unchecked	= $inputs.not(':checked');
 
-			if($unchecked.not($el).length === 0){
+			if($unchecked.not($el).length === 0 && !$el.prop('checked')){
 				// First item toggled
 				$inputs.not($el).prop('checked', false);
 				$el.prop('checked', true);
@@ -34,9 +64,24 @@
 				$inputs.prop('checked', true);
 			}
 
+			if($inputs.not(':checked').length){
+				showFilterClear($container);
+			} else {
+				hideFilterClear($container);
+			}
+
 			// Collate all to hide
+			var $toShow	= $items,
+				$toHide;
 			for(var type in filters){
-				var $filters	= filters[type];
+				var $filters	= filters[type],
+					showClasses	= [],
+					hideClasses	= [];
+
+				if(!$filters.not(':checked').length){
+					continue;
+				}
+
 				$filters.each(function(){
 					var $filter		= $(this),
 						className	= type+'-'+$filter.attr('value');
@@ -47,24 +92,28 @@
 						hideClasses.push(className);
 					}
 				});
+
+				$toShow	= $toShow.filter('.'+showClasses.join(',.'));
 			}
 
-			// Toggle elements
-			var hideClassList	= '.'+hideClasses.join(',.'),
-				$toHide	= (hideClasses.length ? $items.filter(hideClassList) : $()).filter(':visible'),
-				$toShow	= (hideClasses.length ? $items.not(hideClassList) : $items).filter(':hidden');
+			$toHide	= $items.not($toShow);
 
+			// Toggle elements
 			var speed	= {
 				fadeSpeed:	'normal',
 				slideSpeed:	'fast'
 			};
-			if($toHide.length > animationMax && 0){
+
+			$toHide	= $toHide.filter(':visible');
+			if($toHide.length > animationMax){
 				// Animations will stuggle
 				$toHide.hide();
 			} else {
 				$toHide.fadeOutSlideUp(speed);
 			}
-			if($toShow.length > animationMax && 0){
+
+			$toShow	= $toShow.filter(':hidden');
+			if($toShow.length > animationMax){
 				// Animations will struggle
 				$toShow.show();
 			} else {
