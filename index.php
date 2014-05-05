@@ -44,13 +44,13 @@ function loadFile($file){
 			$inItem	= true;
 		}
 
-		if(!isset($lines[$i+1]) || $lines[$i+1][0] === '-' || $lines[$i+1][0] === '*'){
+		if(!isset($lines[$i+1]) || (isset($lines[$i+1][0]) && ($lines[$i+1][0] === '-' || $lines[$i+1][0] === '*'))){
 			// End of section
 			$flush	= true;
 
 		} else if($line === ''){
 			// Blank line
-			if(rtrim($lines[$i+1]) != ''){
+			if(isset($lines[$i+1]) && rtrim($lines[$i+1]) != ''){
 				// End of section
 				$flush	= true;
 			}
