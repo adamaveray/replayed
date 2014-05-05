@@ -39,7 +39,7 @@ function loadFile($file){
 	for($i = 0; $i < $noLines; $i++){
 		$line	= rtrim($lines[$i]);
 
-		if($line[0] === '-' || $line[0] === '*'){
+		if(isset($line[0]) && ($line[0] === '-' || $line[0] === '*')){
 			// Start of item
 			$inItem	= true;
 		}
